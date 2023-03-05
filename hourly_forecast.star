@@ -218,7 +218,10 @@ def render_forecast_box(forecast, **kwargs):
                                 child = render.Row(
                                     children = [
                                         render.Text("%d" % forecast["humidity"], font = "CG-pixel-4x5-mono", color = humidity_color(forecast)),
-                                        render.Text("%", font = "CG-pixel-4x5-mono", color = "#999"),
+                                        render.Padding(
+                                            child = render.Text("%", color = "#999"),
+                                            pad = (0, -2, 0, -1)
+                                        )
                                     ]
                                 )
                             ),
