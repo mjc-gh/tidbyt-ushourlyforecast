@@ -201,7 +201,7 @@ def get_hourly_forecast(url, hour_offset):
     return extract_forecast_data_from_period(periods[hour_offset])
 
 def render_forecast_box(forecast, **kwargs):
-    message = "%s - %s - %s - %d RH%% - " % (
+    message = "%s - %s - %s - %d RH%%" % (
         humanize.time_format("EEE Kaa", forecast["start_time"]),
         humanize.time_format("Kaa", forecast["end_time"]),
         forecast["text"],
