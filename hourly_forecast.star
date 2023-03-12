@@ -155,6 +155,27 @@ def wind_color(forecast):
         return "#FFB800"
     return "#FF5714"
 
+def wind_arrow_direction(forecast):
+    wind_dir = forecast["wind_dir"]
+
+    if wind_dir == "N":
+        return "⇑"
+    elif wind_dir == "NE":
+        return "⇗"
+    elif wind_dir == "E":
+        return "⇒"
+    elif wind_dir == "SE":
+        return "⇘"
+    elif wind_dir == "S":
+        return "⇓"
+    elif wind_dir == "SW":
+        return "⇙"
+    elif wind_dir == "W":
+        return "⇐"
+    elif wind_dir == "NW":
+        return "⇖"
+    return ""
+
 def get_hourly_forecast_url(lat, lng):
     cache_key = "hourly_forecast_url:{lat},{lng}".format(lat = lat, lng = lng)
 
@@ -245,7 +266,10 @@ def render_forecast_box(forecast, **kwargs):
                             cross_align = "center",
                             expanded = True,
                             children = [
-                                render.Text("%s %s" % (forecast["wind"], forecast["wind_dir"]), color = wind_color(forecast)),
+                                render.Padding(
+                                    child = render.Text("%s %s%s" % (forecast["wind"], forecast["wind_dir"], wind_arrow_direction(forecast)), color = wind_color(forecast)),
+                                    pad = (1, 0, 0, 0)
+                                ),
                                 render.Row(
                                     main_align = "start",
                                     cross_align = "center",
